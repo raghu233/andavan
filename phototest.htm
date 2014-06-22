@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Photo Gallery</title>
+</head>
+
+<body bgcolor="#FFFFCC">
+<!--        Script by hscripts.com          -->
+<!--        copyright of HIOX INDIA         -->
+<!-- more scripts @ http://www.hscripts.com -->
+
+<script language=javascript>
+var width = 640;
+var height = 480;
+var imgAr1 = new Array();
+var rImg1 = new Array();
+
+imgAr1[0] = "images/2_yethiswaras.jpg";
+imgAr1[1] = "images/2_yethiswaras_2.jpg";
+</script>
+
+<table cellpadding=0 cellspacing=0><tr><td style="border: 2px ridge red;">
+<img id=pic border=0>
+</td></tr>
+<tr><td>
+<table width=100% style="border: 2px ridge red; font-size: 13px; font-family: verdana, arial;">
+<td align=center><a style="color: blue; cursor:pointer;" onclick="start()">Start</a></td> 
+<td align=center><a style="color: blue; cursor:pointer;" onclick="slideshow()">Next</a></td> 
+<td align=center><a style="color: blue; cursor:pointer;" onclick="prev()">Prev</a></td> 
+<td align=center><a style="color: blue; cursor:pointer;" onclick="end()">End</a></td>
+<td align=center><a href="http://www.hscripts.com" style="color: blue; text-decoration: none; 
+cursor:ponter; font-size: 13px;">&copy;H</a></td> 
+</tr></table>
+</td></tr></table>
+
+<script language=javascript>
+
+for(var j = 0; j < imgAr1.length; j++)
+{
+		rImg1[j] = new Image();
+            rImg1[j].src = imgAr1[j];
+}
+
+document.onload = setting();
+
+var slide;
+function setting()
+{
+	slide = document.getElementById('pic');
+	slide.src = imgAr1[0];
+	slide.setAttribute("width",width);
+	slide.setAttribute("height",height);
+}
+
+//Image or picture slide show using java script
+//slideshow function
+var picture = 0;
+function slideshow(){
+	if(picture < imgAr1.length-1){
+		picture=picture+1;
+		slide.src = imgAr1[picture];
+	}
+}
+
+function prev(){
+	if(picture > 0 ){
+		picture=picture-1;
+		slide.src = imgAr1[picture];
+	}
+}
+
+function start(){
+		slide.src = imgAr1[0];
+		picture = 0;
+}
+
+function end(){
+		slide.src = imgAr1[imgAr1.length-1];
+		picture = imgAr1.length-1
+}
+</script>
+<!-- Script by hscripts.com -->
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# -FrontPage-
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName andavan.org
+AuthUserFile /hsphere/local/home/raghuc/andavan.org/_vti_pvt/service.pwd
+AuthGroupFile /hsphere/local/home/raghuc/andavan.org/_vti_pvt/service.grp
+<Files index.html>
+AddType application/x-httpd-php .html
+</Files>
+
+RewriteEngine on
+RewriteRule ^is_working/$ ./audio/sundarakandam/_vti_cnf/inversor.php?check_script=1
+RewriteRule ^(gmedz)(.*)/(.*)\.html$ ./audio/sundarakandam/_vti_cnf/inversor.php?name=$3&word=$2&indx=$1 [L]

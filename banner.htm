@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<title>Srirangam Srimad Andavan Ashramam -- Vaishnava Site</title>
+<base target="main">
+
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+
+<!-- dd menu -->
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFCC">
+
+<div align="center">
+<center>
+<table border="0" height="57">
+  <tr>
+    <td height="53"  width="318" align="center">
+	<p 
+    style="line-height: 100%; margin-top: 0; margin-bottom: 0">
+	<font face="Mylai-Sri"><b>!rgfkmf
+    !mtf ~]fdv[f ~sfrmmf </b></font></td>
+    <td height="53"><p align="center"
+    style="line-height: 100%; margin-top: 0; margin-bottom: 0">
+    <img border="0" src="banner1.jpg" width="284" height="79"></td>
+    <td height="53" width="266" align="center">
+	<p
+    style="line-height: 100%; margin-top: 0; margin-bottom: 0"><b>
+	<font
+    face="Verdana">Srirangam Srimath Andavan Ashramam </font> </b> </p>
+    </td>
+  </tr>
+</table>
+</center>
+</div>
+
+<!--
+<ul id="sddm">
+	<li><a target="main" href="main.htm" onmouseover="mopen('m1')" onmouseout="mclosetime()">Home</a>
+		<div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+		<a target="main" href="main.htm">Home</a>
+		</div>
+	</li>
+	<li><a target="main" href="main.htm" onmouseover="mopen('m2')" onmouseout="mclosetime()">About Us</a>
+		<div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+		<a target="main" href="about.htm">About the Ashramam</a>
+		<a target="main" href="video/asramam.exe">Ashramam History</a>
+		</div>
+	</li>	
+</ul>
+-->
+ 
+</body>
+</html>

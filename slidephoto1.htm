@@ -1,0 +1,317 @@
+<!--
+
+SlideShow with Captions and Cross-Fade
+(C)2002 by CodeLifter.com
+
+Shows images and accompanying captions.
+Browsers: NS4-7,IE4-6
+Fade effect only in IE; degrades gracefully.
+NS4 shows default caption only.
+
+INSTRUCTIONS:
+
+Copy this entire script into a completely blank
+page.  Follow the commented instructions within.
+
+//-->
+
+<html>
+
+<head>
+
+<!--
+Set up the caption font in the following style.
+Place the style script in the head of the page.
+//-->
+
+<style>
+.Caption {
+font-family: Arial;
+font-weight: bold;
+color:      #123456;
+}
+</style>
+
+<!--
+Place the following script in the head of the page.
+Follow the set-up instructions within the script.
+//-->
+
+<script>
+
+// (C) 2002 www.CodeLifter.com
+// http://www.codelifter.com
+// Free for all users, but leave in this header.
+
+// ==============================
+// Set the following variables...
+// ==============================
+
+// Set the slideshow speed (in milliseconds)
+var SlideShowSpeed = 8000;
+
+// Set the duration of crossfade (in seconds)
+var CrossFadeDuration = 3;
+
+var Picture = new Array(); // don't change this
+var Caption = new Array(); // don't change this
+
+// Specify the image files...
+// To add more images, just continue
+// the pattern, adding to the array below.
+// To use fewer images, remove lines
+// starting at the end of the Picture array.
+// Caution: The number of Pictures *must*
+// equal the number of Captions!
+
+Picture[1] = 'images/2004_thirunakshatram.jpg';
+Picture[2] = 'images/2004_thirunakshatram_2.jpg';
+Picture[3] = 'images/2_yethiswaras.jpg';
+Picture[4] = 'images/2_yethiswaras_2.jpg';
+Picture[5] = 'images/2_yethiswaras_3.jpg';
+Picture[6] = 'images/2_yethiswaras_4.jpg';
+Picture[7] = 'images/2_yethiswaras_5.jpg';
+Picture[8] = 'images/2_yethiswaras_6.jpg';
+Picture[9] = 'images/3-Andavan swamigal-1.JPG';
+Picture[10] = 'images/3-Andavan swamigal-2.bmp';
+Picture[11] = 'images/3-Andavan swamigal-2.jpg';
+Picture[12] = 'images/3-Andavan swamigal.JPG';
+Picture[13] = 'images/andal1.jpg';
+Picture[14] = 'images/Andav.jpg';
+Picture[15] = 'images/Andavan Swamigal-3.jpg';
+Picture[16] = 'images/andavan.jpg';
+Picture[17] = 'images/andavanmain.jpg';
+Picture[18] = 'images/andavanthiruppavai1.jpg';
+Picture[19] = 'images/andavanthiruppavai2.jpg';
+Picture[20] = 'images/andavanthiruppavai3.jpg';
+Picture[21] = 'images/Andav_s.jpg';
+Picture[22] = 'images/bannernew.gif';
+Picture[23] = 'images/Bharanyasam photo.jpg';
+Picture[24] = 'images/Bhashiyakaraya - A.JPG';
+Picture[25] = 'images/bombay.JPG';
+Picture[26] = 'images/C1.JPG';
+Picture[27] = 'images/C2.JPG';
+Picture[28] = 'images/C3.JPG';
+Picture[29] = 'images/C4.JPG';
+Picture[30] = 'images/C5.JPG';
+Picture[31] = 'images/C6.JPG';
+Picture[32] = 'images/chatur1.jpg';
+Picture[33] = 'images/chatur10.jpg';
+Picture[34] = 'images/chatur11.jpg';
+Picture[35] = 'images/chatur12.jpg';
+Picture[36] = 'images/chatur2.jpg';
+Picture[37] = 'images/chatur3.jpg';
+Picture[38] = 'images/chatur4.jpg';
+Picture[39] = 'images/chatur5.jpg';
+Picture[40] = 'images/chatur6.jpg';
+Picture[41] = 'images/chatur7.jpg';
+Picture[42] = 'images/chatur8.jpg';
+Picture[43] = 'images/chatur9.jpg';
+Picture[44] = 'images/desika1.jpg';
+Picture[45] = 'images/desika2.jpg';
+Picture[46] = 'images/Desikan.jpg';
+Picture[47] = 'images/image002.gif';
+Picture[48] = 'images/image004.jpg';
+Picture[49] = 'images/Koodaraivellum1.JPG';
+Picture[50] = 'images/Koodaraivellum2.JPG';
+Picture[51] = 'images/Koodaraivellum3.jpg';
+Picture[52] = 'images/Koodaraivellum4.jpg';
+Picture[53] = 'images/Koodaraivellum5.jpg';
+Picture[54] = 'images/Koodaraivellum6.jpg';
+Picture[55] = 'images/Kudan.jpg';
+Picture[56] = 'images/Kudan_s.jpg';
+Picture[57] = 'images/KULAM.JPG';
+Picture[58] = 'images/mandap1.jpg';
+Picture[59] = 'images/manthratchadai.jpg';
+Picture[60] = 'images/MULAVAR.JPG';
+Picture[61] = 'images/mysoreandavan.jpg';
+Picture[62] = 'images/nigamantha-B.JPG';
+Picture[63] = 'images/P1270001.JPG';
+Picture[64] = 'images/P1270002.JPG';
+Picture[65] = 'images/P1270003.JPG';
+Picture[66] = 'images/P1270004.JPG';
+Picture[67] = 'images/P1270005.JPG';
+Picture[68] = 'images/P1270006.JPG';
+Picture[69] = 'images/P1270007.JPG';
+Picture[70] = 'images/P1270008.JPG';
+Picture[71] = 'images/P1270009.JPG';
+Picture[72] = 'images/paduka_vihar.jpg';
+Picture[73] = 'images/paduka_vihar_l.jpg';
+Picture[74] = 'images/Parakala Mutt.jpg';
+Picture[75] = 'images/parakala1.jpg';
+Picture[76] = 'images/parakala2.jpg';
+Picture[77] = 'images/parakala3.jpg';
+Picture[78] = 'images/patasala1.jpg';
+Picture[79] = 'images/patasala2.jpg';
+Picture[80] = 'images/patasala3.jpg';
+Picture[81] = 'images/patasala4.jpg';
+Picture[82] = 'images/patasala5.jpg';
+Picture[83] = 'images/periandavan.jpg';
+Picture[84] = 'images/periandavan1.jpg';
+Picture[85] = 'images/periyashramam.jpg';
+Picture[86] = 'images/pic01869.jpg';
+Picture[87] = 'images/pic07711.jpg';
+Picture[88] = 'images/pic1-1.jpg';
+Picture[89] = 'images/pic1-2.jpg';
+Picture[90] = 'images/pic11538.jpg';
+Picture[91] = 'images/pic14771.jpg';
+Picture[92] = 'images/pic15141.jpg';
+Picture[93] = 'images/pic2-1.jpg';
+Picture[94] = 'images/pic2-2.jpg';
+Picture[95] = 'images/pic2-3.jpg';
+Picture[96] = 'images/pic21726.jpg';
+Picture[97] = 'images/pic28253.jpg';
+Picture[98] = 'images/pic3-1.jpg';
+Picture[99] = 'images/pic3-2.jpg';
+Picture[100] = 'images/pic3-3.jpg';
+Picture[101] = 'images/pic4-1.jpg';
+Picture[102] = 'images/pic4-2.jpg';
+Picture[103] = 'images/ponn1.jpg';
+Picture[104] = 'images/ponn2.jpg';
+Picture[105] = 'images/ponn3.jpg';
+Picture[106] = 'images/poornam.jpg';
+Picture[107] = 'images/ranga4.jpg';
+Picture[108] = 'images/ranga5.jpg';
+Picture[109] = 'images/Sahasra Kalasabishegam-2.jpg';
+Picture[110] = 'images/Sahasra Kalasabishegam-3.jpg';
+Picture[111] = 'images/Sahasra Kalasabishegam-6.jpg';
+Picture[112] = 'images/SANNATHI.JPG';
+Picture[113] = 'images/Sannathi1.jpg';
+Picture[114] = 'images/sannathi2.jpg';
+Picture[115] = 'images/santhana1.jpg';
+Picture[116] = 'images/santhana2.jpg';
+Picture[117] = 'images/santhana3.jpg';
+Picture[118] = 'images/sevaswami.jpg';
+Picture[119] = 'images/simmasan.jpg';
+Picture[120] = 'images/Sri Gopalarya Mahadesikan-C.JPG';
+Picture[121] = 'images/Srimathe Ranganatha Mahadesikaya-K.JPG';
+Picture[122] = 'images/Srimathe Rangaramanuja Mahadesikaya-N.JPG';
+Picture[123] = 'images/Srimathe Vedantha Ramanuja-D.JPG';
+Picture[124] = 'images/Srimathe Vedantha Ramanuja-L.JPG';
+Picture[125] = 'images/Srinivasa Mahadesikaya-F.JPG';
+Picture[126] = 'images/Srinivasa Mahadesikaya.-1-J.JPG';
+Picture[127] = 'images/Srinivasa Ramanuja Mahadesikaya-1-M.JPG';
+Picture[128] = 'images/Srinivasa Ramanuja Mahadesikaya-H.JPG';
+Picture[129] = 'images/srinivasa ramanuja-1-E.JPG';
+Picture[130] = 'images/theertham-1.jpg';
+Picture[131] = 'images/theertham-2.jpg';
+Picture[132] = 'images/theertham-3.jpg';
+Picture[133] = 'images/theertham-4.jpg';
+Picture[134] = 'images/thoopuldesikan.jpg';
+Picture[135] = 'images/tiruchanur1.JPG';
+Picture[136] = 'images/tiruchanur2.JPG';
+Picture[137] = 'images/tiruchanur3.JPG';
+Picture[138] = 'images/tirupathi1.JPG';
+Picture[139] = 'images/tirupathi2.JPG';
+Picture[140] = 'images/tirupatiashramam.jpg';
+Picture[141] = 'images/UTSAVAR.JPG';
+Picture[142] = 'images/vedantha ramanuja-1-I.JPG';
+Picture[143] = 'images/Vedaparayanam-2.jpg';
+Picture[144] = 'images/Vedaparayanam-3.jpg';
+Picture[145] = 'images/Vedaparayanam-4.jpg';
+Picture[146] = 'images/Vedaparayanam-5.jpg';
+Picture[147] = 'images/Vedaparayanam.jpg';
+Picture[148] = 'images/VELAMOOR.JPG';
+Picture[149] = 'images/velamoor_l.jpg';
+Picture[150] = 'images/venkata2.jpg';
+Picture[151] = 'images/Venugopalan Sannathi.jpg';
+Picture[152] = 'images/venugopalan.jpg';
+Picture[153] = 'images/venugopalan_l.jpg';
+Picture[154] = 'images/vidaylaya8.JPG';
+Picture[155] = 'images/Vidwat Sadas.jpg';
+Picture[156] = 'images/vidyalaya1.JPG';
+Picture[157] = 'images/vidyalaya2.JPG';
+Picture[158] = 'images/vidyalaya3.JPG';
+Picture[159] = 'images/vidyalaya4.JPG';
+Picture[160] = 'images/vidyalaya5.JPG';
+Picture[161] = 'images/vidyalaya6.JPG';
+Picture[162] = 'images/vidyalaya7.JPG';
+Picture[163] = 'images/winxp.gif';
+Picture[164] = 'images/yathra.jpg';
+Picture[165] = 'images/zahirabadashramam1.jpg';
+Picture[166] = 'images/zahirabadashramam2.jpg';
+Picture[167] = 'images/zahirabadashramam3.jpg';
+
+// Specify the Captions...
+// To add more captions, just continue
+// the pattern, adding to the array below.
+// To use fewer captions, remove lines
+// starting at the end of the Caption array.
+// Caution: The number of Captions *must*
+// equal the number of Pictures!
+
+Caption[1]  = "This is the first caption.";
+
+// =====================================
+// Do not edit anything below this line!
+// =====================================
+
+var tss;
+var iss;
+var jss = 1;
+var pss = Picture.length-1;
+
+var preLoad = new Array();
+for (iss = 1; iss < pss+1; iss++){
+preLoad[iss] = new Image();
+preLoad[iss].src = Picture[iss];}
+
+function runSlideShow(){
+if (document.all){
+document.images.PictureBox.style.filter="blendTrans(duration=2)";
+document.images.PictureBox.style.filter="blendTrans(duration=CrossFadeDuration)";
+document.images.PictureBox.filters.blendTrans.Apply();}
+document.images.PictureBox.src = preLoad[jss].src;
+if (document.getElementById) document.getElementById("CaptionBox").innerHTML= Caption[jss];
+if (document.all) document.images.PictureBox.filters.blendTrans.Play();
+jss = jss + 1;
+if (jss > (pss)) jss=1;
+tss = setTimeout('runSlideShow()', SlideShowSpeed);
+}
+
+</script>
+
+</head>
+
+<!--
+Add the onload=runSlideShow() event call to the body tag.
+//-->
+
+<body onload=runSlideShow() bgcolor="#FFFFCC">
+
+<p align="center"><font face="Verdana"><b><!--
+The following table holds the images and captions.
+Place the table in your page where you want the slideshow
+to appear.  Follow the instructions for each table cell.
+//-->Photo Gallery Slide Show</b></font></p>
+
+<table border=0 cellpadding=0 cellspacing=0 align="center">
+  <tr>
+    <!--
+    The next table cell holds the images.
+    Set cell and image width and height the same.
+    The img src must have name=PictureBox in its
+    tag.  Usually the first image in the Picture
+    array in the script is used here.
+    //-->
+    <td width=350 height=300>
+    <img src=Image001.jpg name=PictureBox>
+    </td>
+  </tr>
+  <tr>
+    <!--
+    The next table cell holds the captions.
+    This table cell must have id=CaptionBox and
+    class=Caption in its tag. The default caption
+    shows whilst loading in all browsers; NS4
+    will show only the default caption, throughout.
+    //-->
+    <td id=CaptionBox class=Caption align=center bgcolor=#fedcba>
+    This is the default caption.
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

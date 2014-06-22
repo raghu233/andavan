@@ -1,0 +1,381 @@
+<html>
+
+<head>
+<meta NAME="Author" CONTENT="R. SRINIVASAN">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Monthly Newsletter</title>
+<script LANGUAGE="JavaScript" FPTYPE="dynamicanimation">
+<!--
+  // If you want to change this script, you must also make the following
+  // changes so that FrontPage will not overwrite your new script.
+  // In the script tag, change type="dynamicanimation" to type="mydynamicanimation"
+  // In the first script statement, change "dynamicanimation" to "mydynamicanimation"
+  // Throughout the HTML content, change dynamicanimation= to mydynamicanimation=
+  // Change function dynAnimation to function mydynAnimation
+  // In the body tag, change onload="dynAnimation()" to onload="mydynAnimation()"
+  dynamicanimAttr = "dynamicanimation"
+  animateElements = new Array()
+  currentElement = 0
+  speed = 0
+  stepsZoom = 8
+  stepsWord = 8
+  stepsFly = 12
+  stepsSpiral = 16
+  steps = stepsZoom
+  step = 0
+  outString = ""
+  function dynAnimation()
+  {
+    var ms = navigator.appVersion.indexOf("MSIE")
+    ie4 = (ms>0) && (parseInt(navigator.appVersion.substring(ms+5, ms+6)) >= 4)
+    if(!ie4)
+    {
+      if((navigator.appName == "Netscape") &&
+         (parseInt(navigator.appVersion.substring(0, 1)) >= 4))
+      {
+        for (index=document.layers.length-1; index >= 0; index--)
+        {
+            layer=document.layers[index]
+            if (layer.left==10000)
+                layer.left=0
+        }
+      }
+      return
+    }
+    for (index=document.all.length-1; index >= document.body.sourceIndex; index--)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if(null != animation)
+      {
+        if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        {
+          ih = el.innerHTML
+          outString = ""
+          i1 = 0
+          iend = ih.length
+          while(true)
+          {
+            i2 = startWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, false, "")
+            if(i2 == iend)
+              break
+            i1 = i2
+            i2 = endWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, true, animation)
+            if(i2 == iend)
+              break
+            i1 = i2
+          }
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+        if(animation == "zoomIn" || animation == "zoomOut")
+        {
+          ih = el.innerHTML
+          outString = "<SPAN " + dynamicanimAttr + "=\"" + animation + "\" style=\"position: relative; left: 10000;\">"
+          outString += ih
+          outString += "</SPAN>"
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+      }
+    }
+    i = 0
+    for (index=document.body.sourceIndex; index < document.all.length; index++)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if (null != animation)
+      {
+        if(animation == "flyLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyRight")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyTop" || animation == "dropWord")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottom")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyTopLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyTopRight" || animation == "flyTopRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottomLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyBottomRight" || animation == "flyBottomRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "spiral")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "zoomIn")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else if(animation == "zoomOut")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        el.initLeft = el.style.posLeft
+        el.initTop = el.style.posTop
+        animateElements[i++] = el
+      }
+    }
+    window.setTimeout("animate();", speed)
+  }
+  function offsetLeft(el)
+  {
+    x = el.offsetLeft
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      x += e.offsetLeft;
+    return x
+  } 
+  function offsetTop(el)
+  {
+    y = el.offsetTop
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      y += e.offsetTop;
+    return y
+  } 
+  function startWord(ih, i)
+  {
+    for(tag = false; i < ih.length; i++)
+    {
+      c = ih.charAt(i)
+      if(c == '<')
+        tag = true
+      if(!tag)
+        return i
+      if(c == '>')
+        tag = false
+    }
+    return -1
+  }
+  function endWord(ih, i)
+  {
+    nonSpace = false
+    space = false
+    while(i < ih.length)
+    {
+      c = ih.charAt(i)
+      if(c != ' ')
+        nonSpace = true
+      if(nonSpace && c == ' ')
+        space = true
+      if(c == '<')
+        return i
+      if(space && c != ' ')
+        return i
+      i++
+    }
+    return -1
+  }
+  function outWord(ih, i1, i2, dyn, anim)
+  {
+    if(dyn)
+      outString += "<SPAN " + dynamicanimAttr + "=\"" + anim + "\" style=\"position: relative; left: 10000;\">"
+    outString += ih.substring(i1, i2)
+    if(dyn)
+      outString += "</SPAN>"
+  }
+  function animate()
+  {
+    el = animateElements[currentElement]
+    animation = el.getAttribute(dynamicanimAttr, false)
+    step++
+    if(animation == "spiral")
+    {
+      steps = stepsSpiral
+      v = step/steps
+      rf = 1.0 - v
+      t = v * 2.0*Math.PI
+      rx = Math.max(Math.abs(el.initLeft), 200)
+      ry = Math.max(Math.abs(el.initTop),  200)
+      el.style.posLeft = Math.ceil(-rf*Math.cos(t)*rx)
+      el.style.posTop  = Math.ceil(-rf*Math.sin(t)*ry)
+    }
+    else if(animation == "zoomIn")
+    {
+      steps = stepsZoom
+      el.style.fontSize = Math.ceil(50+50*step/steps) + "%"
+      el.style.posLeft = 0
+    }
+    else if(animation == "zoomOut")
+    {
+      steps = stepsZoom
+      el.style.fontSize = Math.ceil(100+200*(steps-step)/steps) + "%"
+      el.style.posLeft = 0
+    }
+    else
+    {
+      steps = stepsFly
+      if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        steps = stepsWord
+      dl = el.initLeft / steps
+      dt = el.initTop  / steps
+      el.style.posLeft = el.style.posLeft - dl
+      el.style.posTop = el.style.posTop - dt
+    }
+    if (step >= steps) 
+    {
+      el.style.posLeft = 0
+      el.style.posTop = 0
+      currentElement++
+      step = 0
+    }
+    if(currentElement < animateElements.length)
+      window.setTimeout("animate();", speed)
+  }
+//-->
+</script></head>
+
+<body onload="dynAnimation()">
+
+<p align="center">&nbsp;</p>
+
+<h1 align="center"><u><font color="#0000FF">SAMPRADAYAM</font></u></h1>
+<font SIZE="4">
+
+<p ALIGN="center"><u><font color="#0000FF">SRIMATHE RANGARAMANUJA MAHA DESIKAYA NAMAHA:</font></u></p>
+
+<blockquote>
+  <p ALIGN="center" dynamicanimation="flyLeft"
+  style="position: relative !important; left: 10000 !important"><u><strong><font
+  color="#008080">FOREWORD</font></strong></u></p>
+  <p ALIGN="left" dynamicanimation="flyLeft"
+  style="position: relative !important; left: 10000 !important"><font color="#008080">There
+  were requests from many youngsters to know more about our Sampradayam.&nbsp; Towards this,
+  from Srimath Andavan Ashramam, we would like to start a series of lessons to give some of
+  the fundamental insights into our Srivaishnava Sampradayam.&nbsp; </font></p>
+  <p ALIGN="left" dynamicanimation="flyLeft"
+  style="position: relative !important; left: 10000 !important"><font color="#008080">Sri S
+  Narasimha Raghavachariar - SriKaryam of Srimath Andavan Ashramam, will be authoring this
+  series for the benefit of Youngsters and others who are interested to know about this
+  subject.</font></p>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">1. What is Sampradaya?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">It is a set of Principles accepted and adopted
+traditionally and passed on to the posterity, generation after generation.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">2. Why Sampradaya?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">When we arrive at the cross roads of convictions
+we are at a loss to know which path to persue with. Several paths, recommended by many,
+lay ahead. We decide to take the path followed by our elders traditionally. This is called
+Sampradaya, the rightful share of ours on the philosophical and religious area.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">3. Connote the word Sampradaya?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">The word Sampradaya is made of three parts. The
+first two are the two prepositions with a meaning &quot;glorious&quot;. Daya means the
+rightful share of the property inherited and enjoys by the posterity. While Daya speaks of
+worldly wealth. Sampradaya tells about the wonderful and glorious knowledge inherited by
+and passed on to the Sishya and after sometime bequeathed to another, thus being passed on
+to generations.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">4. Who is a Sri Vaishnava?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">A Srivaishnava is he who accepts wholeheartedly
+that Sriman Nayarana is the Supreme, who is greater than the greatest. All divine, human
+and non-living beings are His subjects. They all live by and for Him.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">5. What is Sri Lakshmi for Sriman Nayarana?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">Sri Lakshmi is as great as Sriman Narayana.She
+possesses all the qualities possessed by Him. Both of them are equal in every respect.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">6. Who are the first three Acharyas of Sri
+  Vaishnavism?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">Sriman Narayana, Sri Lakshmi and Sri Vishwaksena
+are the first three Acharyas of Sri Vaishnavism.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">7. What are the basic and most important concepts
+  of Sri Vaishnavism?</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">a) Sriman Narayana is Supreme</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">b) Sri Lakshmi is as great as the first Acharya</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">c) He is the natural master of all</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">d) All are the natural servants of His</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">e) To get the permanent service of Sriman
+  Narayana is the Moksha</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">f) Total surrender to Him is the only easy way to
+  Moksha</font></p>
+  <p ALIGN="JUSTIFY"><font color="#0000FF">g) One can attain Moksha when he is blessed by
+  our Acharya</font></p>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">8. What is birth according to Sri Ramanuja?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">The contact between the body and soul is said to
+be the birth and the seperation of them is the death.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">9. What is sin?</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">The cause of displeasure of Sriman Narayana is
+the sin. The act by which He is pleased is called Virtue.</font></p>
+
+<blockquote>
+  <p ALIGN="JUSTIFY"><font color="#FF0000">10. Explain the relationship among the lifeless
+  world, the human soul and Sriman Narayana</font><font color="#0000FF"> </font><font
+  color="#FF0000">(which are called Jada Jeeva and Iswara respectively)</font></p>
+</blockquote>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">The world is lifeless. It is being governed by
+the human soul as its master and both the lifeless world and the human soul is governed by
+Him as the master of both.</font></p>
+
+<p ALIGN="JUSTIFY"><font color="#0000FF">(to be continued)</font></p>
+</font>
+</body>
+</html>

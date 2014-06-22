@@ -1,0 +1,243 @@
+<!--
+
+SlideShow with Captions and Cross-Fade
+(C)2002 by CodeLifter.com
+
+Shows images and accompanying captions.
+Browsers: NS4-7,IE4-6
+Fade effect only in IE; degrades gracefully.
+NS4 shows default caption only.
+
+INSTRUCTIONS:
+
+Copy this entire script into a completely blank
+page.  Follow the commented instructions within.
+
+//-->
+
+<html>
+
+<head>
+
+<!--
+Set up the caption font in the following style.
+Place the style script in the head of the page.
+//-->
+
+<style>
+.Caption {
+font-family: Arial;
+font-weight: bold;
+color:      #123456;
+}
+</style>
+
+<!--
+Place the following script in the head of the page.
+Follow the set-up instructions within the script.
+//-->
+
+<script>
+
+// (C) 2002 www.CodeLifter.com
+// http://www.codelifter.com
+// Free for all users, but leave in this header.
+
+// ==============================
+// Set the following variables...
+// ==============================
+
+// Set the slideshow speed (in milliseconds)
+var SlideShowSpeed = 8000;
+
+// Set the duration of crossfade (in seconds)
+var CrossFadeDuration = 3;
+
+var Picture = new Array(); // don't change this
+var Caption = new Array(); // don't change this
+
+// Specify the image files...
+// To add more images, just continue
+// the pattern, adding to the array below.
+// To use fewer images, remove lines
+// starting at the end of the Picture array.
+// Caution: The number of Pictures *must*
+// equal the number of Captions!
+
+Picture[1] = 'images/jul08/P1010463.JPG';
+Picture[2] = 'images/jul08/P1010464.JPG';
+Picture[3] = 'images/jul08/P1010465.JPG';
+Picture[4] = 'images/jul08/P1010466.JPG';
+Picture[5] = 'images/jul08/P1010467.JPG';
+Picture[6] = 'images/jul08/P1010468.JPG';
+Picture[7] = 'images/jul08/P1010469.JPG';
+Picture[8] = 'images/jul08/P1010470.JPG';
+Picture[9] = 'images/jul08/P1010471.JPG';
+Picture[10] = 'images/jul08/P1010472.JPG';
+Picture[11] = 'images/jul08/P1010473.JPG';
+Picture[12] = 'images/jul08/P1010474.JPG';
+Picture[13] = 'images/jul08/P1010475.JPG';
+Picture[14] = 'images/jul08/P1010476.JPG';
+Picture[15] = 'images/jul08/P1010477.JPG';
+Picture[16] = 'images/jul08/P1010478.JPG';
+Picture[17] = 'images/jul08/P1010479.JPG';
+Picture[18] = 'images/jul08/P1010480.JPG';
+Picture[19] = 'images/jul08/P1010481.JPG';
+Picture[20] = 'images/jul08/P1010482.JPG';
+Picture[21] = 'images/jul08/P1010483.JPG';
+Picture[22] = 'images/jul08/P1010484.JPG';
+Picture[23] = 'images/jul08/P1010485.JPG';
+Picture[24] = 'images/jul08/P1010486.JPG';
+Picture[25] = 'images/jul08/P1010487.JPG';
+Picture[26] = 'images/jul08/P1010488.JPG';
+Picture[27] = 'images/jul08/P1010489.JPG';
+Picture[28] = 'images/jul08/P1010490.JPG';
+Picture[29] = 'images/jul08/P1010491.JPG';
+Picture[30] = 'images/jul08/P1010492.JPG';
+Picture[31] = 'images/jul08/P1010493.JPG';
+Picture[32] = 'images/jul08/P1010494.JPG';
+Picture[33] = 'images/jul08/P1010495.JPG';
+Picture[34] = 'images/jul08/P1010496.JPG';
+Picture[35] = 'images/jul08/P1010513.JPG';
+Picture[36] = 'images/jul08/P1010514.JPG';
+Picture[37] = 'images/jul08/P1010515.JPG';
+Picture[38] = 'images/jul08/P1010528.JPG';
+Picture[39] = 'images/jul08/P1010529.JPG';
+Picture[40] = 'images/jul08/P1010530.JPG';
+Picture[41] = 'images/jul08/P1010538.JPG';
+Picture[42] = 'images/jul08/P1010539.JPG';
+Picture[43] = 'images/jul08/P1010540.JPG';
+Picture[44] = 'images/jul08/P1010541.JPG';
+Picture[45] = 'images/jul08/P1010542.JPG';
+Picture[46] = 'images/jul08/P1010543.JPG';
+Picture[47] = 'images/jul08/P1010544.JPG';
+
+// Specify the Captions...
+// To add more captions, just continue
+// the pattern, adding to the array below.
+// To use fewer captions, remove lines
+// starting at the end of the Caption array.
+// Caution: The number of Captions *must*
+// equal the number of Pictures!
+
+Caption[1] = 'P1010463';
+Caption[2] = 'P1010464';
+Caption[3] = 'P1010465';
+Caption[4] = 'P1010466';
+Caption[5] = 'P1010467';
+Caption[6] = 'P1010468';
+Caption[7] = 'P1010469';
+Caption[8] = 'P1010470';
+Caption[9] = 'P1010471';
+Caption[10] = 'P1010472';
+Caption[11] = 'P1010473';
+Caption[12] = 'P1010474';
+Caption[13] = 'P1010475';
+Caption[14] = 'P1010476';
+Caption[15] = 'P1010477';
+Caption[16] = 'P1010478';
+Caption[17] = 'P1010479';
+Caption[18] = 'P1010480';
+Caption[19] = 'P1010481';
+Caption[20] = 'P1010482';
+Caption[21] = 'P1010483';
+Caption[22] = 'P1010484';
+Caption[23] = 'P1010485';
+Caption[24] = 'P1010486';
+Caption[25] = 'P1010487';
+Caption[26] = 'P1010488';
+Caption[27] = 'P1010489';
+Caption[28] = 'P1010490';
+Caption[29] = 'P1010491';
+Caption[30] = 'P1010492';
+Caption[31] = 'P1010493';
+Caption[32] = 'P1010494';
+Caption[33] = 'P1010495';
+Caption[34] = 'P1010496';
+Caption[35] = 'P1010513';
+Caption[36] = 'P1010514';
+Caption[37] = 'P1010515';
+Caption[38] = 'P1010528';
+Caption[39] = 'P1010529';
+Caption[40] = 'P1010530';
+Caption[41] = 'P1010538';
+Caption[42] = 'P1010539';
+Caption[43] = 'P1010540';
+Caption[44] = 'P1010541';
+Caption[45] = 'P1010542';
+Caption[46] = 'P1010543';
+Caption[47] = 'P1010544';
+
+// =====================================
+// Do not edit anything below this line!
+// =====================================
+
+var tss;
+var iss;
+var jss = 1;
+var pss = Picture.length-1;
+
+var preLoad = new Array();
+for (iss = 1; iss < pss+1; iss++){
+preLoad[iss] = new Image();
+preLoad[iss].src = Picture[iss];}
+
+function runSlideShow(){
+if (document.all){
+document.images.PictureBox.style.filter="blendTrans(duration=2)";
+document.images.PictureBox.style.filter="blendTrans(duration=CrossFadeDuration)";
+document.images.PictureBox.filters.blendTrans.Apply();}
+document.images.PictureBox.src = preLoad[jss].src;
+if (document.getElementById) document.getElementById("CaptionBox").innerHTML= Caption[jss];
+if (document.all) document.images.PictureBox.filters.blendTrans.Play();
+jss = jss + 1;
+if (jss > (pss)) jss=1;
+tss = setTimeout('runSlideShow()', SlideShowSpeed);
+}
+
+</script>
+
+</head>
+
+<!--
+Add the onload=runSlideShow() event call to the body tag.
+//-->
+
+<body onload=runSlideShow() bgcolor="#FFFFCC">
+
+<p align="center"><font face="Verdana"><b><!--
+The following table holds the images and captions.
+Place the table in your page where you want the slideshow
+to appear.  Follow the instructions for each table cell.
+//-->Srimath Andavan 20th Chaturmaasya sankalpam celebration photos - July 18 2008</b></font></p>
+
+<table border=0 cellpadding=0 cellspacing=0 align="center">
+  <tr>
+    <!--
+    The next table cell holds the images.
+    Set cell and image width and height the same.
+    The img src must have name=PictureBox in its
+    tag.  Usually the first image in the Picture
+    array in the script is used here.
+    //-->
+    <td width=350 height=300>
+    <img src=Image001.jpg name=PictureBox>
+    </td>
+  </tr>
+  <tr>
+    <!--
+    The next table cell holds the captions.
+    This table cell must have id=CaptionBox and
+    class=Caption in its tag. The default caption
+    shows whilst loading in all browsers; NS4
+    will show only the default caption, throughout.
+    //-->
+    <td id=CaptionBox class=Caption align=center bgcolor=#fedcba>
+    Andavan 20th Chaturmasya Sankalpam Photos July 18th 2008.
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

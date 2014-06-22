@@ -1,0 +1,230 @@
+<!--
+
+SlideShow with Captions and Cross-Fade
+(C)2002 by CodeLifter.com
+
+Shows images and accompanying captions.
+Browsers: NS4-7,IE4-6
+Fade effect only in IE; degrades gracefully.
+NS4 shows default caption only.
+
+INSTRUCTIONS:
+
+Copy this entire script into a completely blank
+page.  Follow the commented instructions within.
+
+//-->
+
+<html>
+
+<head>
+
+<!--
+Set up the caption font in the following style.
+Place the style script in the head of the page.
+//-->
+
+<style>
+.Caption {
+font-family: Arial;
+font-weight: bold;
+color:      #123456;
+}
+</style>
+
+<!--
+Place the following script in the head of the page.
+Follow the set-up instructions within the script.
+//-->
+
+<script>
+
+// (C) 2002 www.CodeLifter.com
+// http://www.codelifter.com
+// Free for all users, but leave in this header.
+
+// ==============================
+// Set the following variables...
+// ==============================
+
+// Set the slideshow speed (in milliseconds)
+var SlideShowSpeed = 8000;
+
+// Set the duration of crossfade (in seconds)
+var CrossFadeDuration = 3;
+
+var Picture = new Array(); // don't change this
+var Caption = new Array(); // don't change this
+
+// Specify the image files...
+// To add more images, just continue
+// the pattern, adding to the array below.
+// To use fewer images, remove lines
+// starting at the end of the Picture array.
+// Caution: The number of Pictures *must*
+// equal the number of Captions!
+
+Picture[1] = 'images/2008tn/5th June 08-2.JPG';
+Picture[2] = 'images/2008tn/5th june08-3.JPG';
+Picture[3] = 'images/2008tn/5thjune08-1-Tiruchanoor-HH74th TN.JPG';
+Picture[4] = 'images/2008tn/5thjune08-10.JPG';
+Picture[5] = 'images/2008tn/5thjune08-11.JPG';
+Picture[6] = 'images/2008tn/5thjune08-12.JPG';
+Picture[7] = 'images/2008tn/5thjune08-13.JPG';
+Picture[8] = 'images/2008tn/5thjune08-14.JPG';
+Picture[9] = 'images/2008tn/5thjune08-14A.JPG';
+Picture[10] = 'images/2008tn/5thjune08-16.JPG';
+Picture[11] = 'images/2008tn/5thjune08-17.JPG';
+Picture[12] = 'images/2008tn/5thjune08-18.JPG';
+Picture[13] = 'images/2008tn/5thjune08-19.JPG';
+Picture[14] = 'images/2008tn/5thjune08-20.JPG';
+Picture[15] = 'images/2008tn/5thjune08-21.JPG';
+Picture[16] = 'images/2008tn/5thjune08-22.JPG';
+Picture[17] = 'images/2008tn/5thjune08-23.JPG';
+Picture[18] = 'images/2008tn/5thjune08-24.JPG';
+Picture[19] = 'images/2008tn/5thjune08-25.JPG';
+Picture[20] = 'images/2008tn/5thjune08-26.JPG';
+Picture[21] = 'images/2008tn/5thjune08-27.JPG';
+Picture[22] = 'images/2008tn/5thjune08-28.JPG';
+Picture[23] = 'images/2008tn/5thjune08-29.JPG';
+Picture[24] = 'images/2008tn/5thjune08-32.JPG';
+Picture[25] = 'images/2008tn/5thjune08-34.JPG';
+Picture[26] = 'images/2008tn/5thjune08-35 74th TN at Tiruchanoor.JPG';
+Picture[27] = 'images/2008tn/5thjune08-3A.JPG';
+Picture[28] = 'images/2008tn/5thjune08-4.JPG';
+Picture[29] = 'images/2008tn/5thjune08-5.JPG';
+Picture[30] = 'images/2008tn/5thjune08-6.JPG';
+Picture[31] = 'images/2008tn/5thjune08-7.JPG';
+Picture[32] = 'images/2008tn/5thjune08-8.JPG';
+Picture[33] = 'images/2008tn/5thjune08-9.JPG';
+Picture[34] = 'images/2008tn/5thjune0815.JPG';
+Picture[35] = 'images/2008tn/5tjune08-30.JPG';
+Picture[36] = 'images/2008tn/5tjune08-31.JPG';
+Picture[37] = 'images/2008tn/5tjune08-33.JPG';
+Picture[38] = 'images/2008tn/Srirangam-Apr 08.JPG';
+Picture[39] = 'images/2008tn/Srirangam-apr08.JPG';
+Picture[40] = 'images/2008tn/SrirangamApr08.JPG';
+
+// Specify the Captions...
+// To add more captions, just continue
+// the pattern, adding to the array below.
+// To use fewer captions, remove lines
+// starting at the end of the Caption array.
+// Caution: The number of Captions *must*
+// equal the number of Pictures!
+
+Caption[1] = '5th June 08-2';
+Caption[2] = '5th june08-3';
+Caption[3] = '5thjune08-1-Tiruchanoor-HH74th TN';
+Caption[4] = '5thjune08-10';
+Caption[5] = '5thjune08-11';
+Caption[6] = '5thjune08-12';
+Caption[7] = '5thjune08-13';
+Caption[8] = '5thjune08-14';
+Caption[9] = '5thjune08-14A';
+Caption[10] = '5thjune08-16';
+Caption[11] = '5thjune08-17';
+Caption[12] = '5thjune08-18';
+Caption[13] = '5thjune08-19';
+Caption[14] = '5thjune08-20';
+Caption[15] = '5thjune08-21';
+Caption[16] = '5thjune08-22';
+Caption[17] = '5thjune08-23';
+Caption[18] = '5thjune08-24';
+Caption[19] = '5thjune08-25';
+Caption[20] = '5thjune08-26';
+Caption[21] = '5thjune08-27';
+Caption[22] = '5thjune08-28';
+Caption[23] = '5thjune08-29';
+Caption[24] = '5thjune08-32';
+Caption[25] = '5thjune08-34';
+Caption[26] = '5thjune08-35 74th TN at Tiruchanoor';
+Caption[27] = '5thjune08-3A';
+Caption[28] = '5thjune08-4';
+Caption[29] = '5thjune08-5';
+Caption[30] = '5thjune08-6';
+Caption[31] = '5thjune08-7';
+Caption[32] = '5thjune08-8';
+Caption[33] = '5thjune08-9';
+Caption[34] = '5thjune0815';
+Caption[35] = '5tjune08-30';
+Caption[36] = '5tjune08-31';
+Caption[37] = '5tjune08-33';
+Caption[38] = 'Srirangam-Apr 08';
+Caption[39] = 'Srirangam-apr08';
+Caption[40] = 'SrirangamApr08';
+
+
+// =====================================
+// Do not edit anything below this line!
+// =====================================
+
+var tss;
+var iss;
+var jss = 1;
+var pss = Picture.length-1;
+
+var preLoad = new Array();
+for (iss = 1; iss < pss+1; iss++){
+preLoad[iss] = new Image();
+preLoad[iss].src = Picture[iss];}
+
+function runSlideShow(){
+if (document.all){
+document.images.PictureBox.style.filter="blendTrans(duration=2)";
+document.images.PictureBox.style.filter="blendTrans(duration=CrossFadeDuration)";
+document.images.PictureBox.filters.blendTrans.Apply();}
+document.images.PictureBox.src = preLoad[jss].src;
+if (document.getElementById) document.getElementById("CaptionBox").innerHTML= Caption[jss];
+if (document.all) document.images.PictureBox.filters.blendTrans.Play();
+jss = jss + 1;
+if (jss > (pss)) jss=1;
+tss = setTimeout('runSlideShow()', SlideShowSpeed);
+}
+
+</script>
+
+</head>
+
+<!--
+Add the onload=runSlideShow() event call to the body tag.
+//-->
+
+<body onload=runSlideShow() bgcolor="#FFFFCC">
+
+<p align="center"><font face="Verdana"><b><!--
+The following table holds the images and captions.
+Place the table in your page where you want the slideshow
+to appear.  Follow the instructions for each table cell.
+//-->Srimath Andavan 2008 Thirunakshathram Photos</b></font></p>
+
+<table border=0 cellpadding=0 cellspacing=0 align="center">
+  <tr>
+    <!--
+    The next table cell holds the images.
+    Set cell and image width and height the same.
+    The img src must have name=PictureBox in its
+    tag.  Usually the first image in the Picture
+    array in the script is used here.
+    //-->
+    <td width=350 height=300>
+    <img src=Image001.jpg name=PictureBox width=640 height=480>
+    </td>
+  </tr>
+  <tr>
+    <!--
+    The next table cell holds the captions.
+    This table cell must have id=CaptionBox and
+    class=Caption in its tag. The default caption
+    shows whilst loading in all browsers; NS4
+    will show only the default caption, throughout.
+    //-->
+    <td id=CaptionBox class=Caption align=center bgcolor=#fedcba>
+    This is the default caption.
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>
