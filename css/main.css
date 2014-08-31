@@ -9,7 +9,7 @@
 				line-height: 1.4em;
 				margin: 0px;}
 			.wrapper {
-				width: 940px;
+				width: 1040px;
 				margin: 20px auto 20px auto;
 				border: 2px solid #000000;
 				background-color: #ffffff;}
@@ -38,7 +38,7 @@
 				color: #000000;}
 			section.courses {
 				float: left;
-				width: 709px;
+				width: 809px;
 				border-right: 1px solid #eeeeee;}
 			article {
 				clear: both;
