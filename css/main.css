@@ -43,13 +43,21 @@
 			article {
 				clear: both;
 				overflow: auto;
-				width: 100%;}
+				width: 98%;
+				margin-left: 5px;}
 			hgroup {
 				margin-top: 40px;}
 			frontfigure {
 				float: left;
 				width: 625px;
 				height: 170px;
+				padding: 5px;
+				margin: 20px;
+				border: 1px solid #eeeeee;}
+			mainfigure {
+				float: left;
+				width: 700px;
+				height: 270px;
 				padding: 5px;
 				margin: 20px;
 				border: 1px solid #eeeeee;}
