@@ -3,7 +3,7 @@ var mct1_Options =
 {
     sliderId: "mcts1",
     direction: "horizontal",
-    scrollInterval: 2500,
+    scrollInterval: 1400,
     scrollDuration: 800,
     hoverPause: true,
     autoAdvance: true,
