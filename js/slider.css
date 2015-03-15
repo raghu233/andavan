@@ -17,6 +17,7 @@
     position: relative;
     overflow: hidden;
     height: 580px;
+    width: 580px;
     padding:0;
     left:0;
 }
