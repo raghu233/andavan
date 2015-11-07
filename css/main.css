@@ -125,4 +125,46 @@
 			}
 			@keyframes blink { 50% { color: transparent; } }
 			@-webkit-keyframes blink { 100% { color: transparent; } 
-			}			
+			}
+		    a:hover{
+		        color: #fff;
+		        background: #939393;
+		    }
+    ul{
+        padding: 0;
+        list-style: none;
+        background: #aeaca8;
+    }
+    ul li{
+        display: inline-block;
+        position: relative;
+        line-height: 9px;
+        text-align: left;
+    }
+    ul li a{
+        display: block;
+        padding: 5px 0px;
+        color: #333;
+        text-decoration: none;
+    }
+    ul li a:hover{
+        color: #fff;
+        background: #aeaca8;
+    }
+    ul li ul.dropdown{
+        min-width: 160px; /* Set width of the dropdown */
+        background: #aeaca8;
+        font-size: 75%;
+        font-family:'Roboto', sans-serif;
+		line-height: 1.4em;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li:hover ul.dropdown{
+        display: block;	/* Display the dropdown */
+    }
+    ul li ul.dropdown li{
+        display: block;
+    }
